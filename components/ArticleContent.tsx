@@ -1,14 +1,14 @@
 "use client";
 
-import React from "react";
 import { useTheme } from 'next-themes';
+import { SafeHtml } from './SafeHtml';
 
 interface ArticleContentProps {
   content: string;
 }
 
 // This component renders article content with Medium-like styling
-export const ArticleContent: React.FC<ArticleContentProps> = ({ content }) => {
+export const ArticleContent = ({ content }: ArticleContentProps) => {
   const { theme } = useTheme();
   const isDarkTheme = theme === 'dark';
   
@@ -116,8 +116,7 @@ export const ArticleContent: React.FC<ArticleContentProps> = ({ content }) => {
         }
       `}</style>
       
-      {/* eslint-disable-next-line react/no-danger */}
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <SafeHtml html={content} />
     </article>
   );
 };

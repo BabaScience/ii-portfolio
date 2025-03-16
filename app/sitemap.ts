@@ -1,4 +1,4 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
 // Define the Article type for consistency
 interface Article {
@@ -79,11 +79,11 @@ function getDateFromString(dateString: string): Date {
   
   const parts = dateString.split(' ');
   if (parts.length === 3) {
-    const day = parseInt(parts[0], 10);
+    const day = Number.parseInt(parts[0], 10);
     const month = months[parts[1]];
-    const year = parseInt(parts[2], 10);
+    const year = Number.parseInt(parts[2], 10);
     
-    if (!isNaN(day) && month !== undefined && !isNaN(year)) {
+    if (!Number.isNaN(day) && month !== undefined && !Number.isNaN(year)) {
       return new Date(year, month, day);
     }
   }

@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { Metadata, ResolvingMetadata } from 'next';
+import type { ReactNode } from 'react';
+import type { Metadata, ResolvingMetadata } from 'next';
 
 // Define the Article type for consistency
 interface Article {
@@ -21,7 +21,7 @@ const articlesData = [
     image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
     date: "15 Mars 2025",
     readTime: "7 min",
-    content: `...` // content shortened for brevity
+    content: "..."
   },
   // Additional articles removed for brevity
 ] as Article[];
