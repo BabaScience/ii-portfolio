@@ -7,10 +7,10 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export -o out",
     "start": "serve out -p $PORT",
     "lint": "next lint",
-    "heroku-postbuild": "npm run build && npm install serve"
+    "heroku-postbuild": "npm run build && npm install -g serve"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
