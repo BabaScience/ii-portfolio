@@ -347,7 +347,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   
   // Find related articles (excluding the current one)
   const relatedArticles = article 
-    ? articlesData.filter(a => a.id !== params.slug).slice(0, 2)
+    ? articlesData.filter(a => a.id !== params.slug).slice(0, 3)
     : [];
   
   if (!article) {
@@ -363,69 +363,67 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   
   return (
     <main className="min-h-screen bg-background">
-      {/* Header Image */}
-      <section className="relative h-[50vh] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0"
-          aria-hidden="true"
-        >
-          <Image
-            src={article.image}
-            alt={article.title}
-            fill
-            priority
-            sizes="100vw"
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center',
-              filter: 'brightness(0.5)'
-            }}
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90 z-[1]" />
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+      {/* Top Navigation Bar with Logo and Back Link */}
+      <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
+        <div className="max-w-screen-md mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/articles">
-            <Button variant="ghost" className="absolute top-8 left-8 text-white hover:bg-white/10" size="sm">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Retour aux articles
+            <Button variant="ghost" size="sm" className="gap-1 text-muted-foreground hover:text-foreground">
+              <ArrowLeft className="w-4 h-4" />
+              <span>Articles</span>
             </Button>
           </Link>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <Link href="/" className="flex items-center gap-1">
+            <Sparkles className="w-5 h-5 text-primary" />
+            <span className="font-semibold text-sm">Inspiration Illimitée</span>
+          </Link>
+        </div>
+      </nav>
+
+      <article className="max-w-screen-md mx-auto px-4 pt-10 pb-20">
+        {/* Article Header */}
+        <header className="mb-8">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold tracking-tight mb-6 leading-tight">
             {article.title}
           </h1>
-          <div className="flex items-center justify-center gap-4 text-gray-300">
-            <time 
-              className="flex items-center" 
-              dateTime={article.date.replace(/(\d+) (\w+) (\d+)/, "$3-$2-$1")}
-            >
-              <Calendar className="w-4 h-4 mr-2" />
-              <span>{article.date}</span>
-            </time>
-            <div className="flex items-center">
-              <Clock className="w-4 h-4 mr-2" />
-              <span>{article.readTime} de lecture</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Article Content */}
-      <section className="py-16 px-4">
-        <div className="max-w-3xl mx-auto">
-          {/* Author Box */}
-          <div className="bg-card/50 backdrop-blur-sm p-6 rounded-lg shadow-sm border border-border mb-8 flex items-center gap-4">
-            <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
-              <Sparkles className="w-6 h-6 text-primary" />
-            </div>
-            <div>
-              <h3 className="font-semibold">Inspiration Illimitée</h3>
-              <p className="text-sm text-muted-foreground">
-                Explorer les profondeurs de la conscience et de la sagesse humaine.
-              </p>
+          
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-muted-foreground mb-8">
+            {/* Author Info */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+                <Sparkles className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-medium text-foreground">Inspiration Illimitée</p>
+                <div className="flex items-center gap-1 text-xs">
+                  <time dateTime={article.date.replace(/(\d+) (\w+) (\d+)/, "$3-$2-$1")}>
+                    {article.date}
+                  </time>
+                  <span>·</span>
+                  <span>{article.readTime} de lecture</span>
+                </div>
+              </div>
             </div>
           </div>
           
-          {/* Use the client component for rendering the article content and JSON-LD */}
+          {/* Featured Image */}
+          <div className="relative aspect-[2/1] mb-10 rounded-xl overflow-hidden">
+            <Image
+              src={article.image}
+              alt={article.title}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 728px"
+              style={{
+                objectFit: 'cover',
+                objectPosition: 'center',
+              }}
+              className="transition-transform duration-700 hover:scale-105"
+            />
+          </div>
+        </header>
+        
+        {/* Article Content */}
+        <div className="article-content">
           <ArticleClientContent 
             title={article.title}
             content={article.content}
@@ -434,71 +432,114 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             date={article.date}
             slug={article.id}
           />
-          
-          {/* Related Articles */}
-          {relatedArticles.length > 0 && (
-            <div className="mt-16">
-              <h2 className="text-2xl font-bold mb-6">Articles Similaires</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {relatedArticles.map((relatedArticle) => (
-                  <Link href={`/articles/${relatedArticle.id}`} key={relatedArticle.id}>
-                    <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                      <div className="aspect-video relative bg-gray-100">
-                        <Image
-                          src={relatedArticle.image}
-                          alt={relatedArticle.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                          className="group-hover:scale-105 transition-transform duration-300"
-                          style={{
-                            objectFit: 'cover',
-                            objectPosition: 'center'
-                          }}
-                        />
-                      </div>
-                      <div className="p-4">
-                        <h3 className="font-semibold group-hover:text-primary transition-colors line-clamp-2">
-                          {relatedArticle.title}
-                        </h3>
-                        <div className="mt-2 flex items-center text-xs text-primary font-medium">
-                          <BookOpen className="w-3 h-3 mr-1" />
-                          Lire l'article
-                          <ArrowRight className="w-3 h-3 ml-1" />
-                        </div>
-                      </div>
-                    </Card>
-                  </Link>
-                ))}
-              </div>
+        </div>
+        
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 my-12">
+          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+            Philosophie
+          </span>
+          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+            Conscience
+          </span>
+          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+            Métaphysique
+          </span>
+        </div>
+        
+        {/* Author Bio */}
+        <div className="border-t border-border pt-10 mb-16">
+          <div className="flex items-start gap-4">
+            <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+              <Sparkles className="w-6 h-6 text-primary" />
             </div>
-          )}
-          
-          {/* Back to Articles Link */}
-          <div className="text-center mt-12">
-            <Link href="/articles">
-              <Button variant="outline" className="gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Voir tous les articles
-              </Button>
-            </Link>
+            <div>
+              <h3 className="font-semibold text-lg mb-2">Inspiration Illimitée</h3>
+              <p className="text-muted-foreground mb-4">
+                Explorer les profondeurs de la conscience et de la sagesse humaine à travers des articles et réflexions sur la philosophie, la spiritualité et le développement personnel.
+              </p>
+              <Button variant="outline" size="sm">Suivre</Button>
+            </div>
           </div>
         </div>
-      </section>
+        
+        {/* Related Articles */}
+        {relatedArticles.length > 0 && (
+          <section className="border-t border-border pt-10">
+            <h2 className="text-2xl font-serif font-semibold mb-8">Plus sur Inspiration Illimitée</h2>
+            <div className="space-y-8">
+              {relatedArticles.map((relatedArticle) => (
+                <Link href={`/articles/${relatedArticle.id}`} key={relatedArticle.id}>
+                  <div className="group grid grid-cols-1 md:grid-cols-5 gap-6 items-start hover:bg-muted/40 p-3 -mx-3 rounded-lg transition-colors">
+                    <div className="md:col-span-3 flex flex-col justify-center">
+                      <h3 className="font-serif text-xl font-medium mb-2 group-hover:text-primary transition-colors">
+                        {relatedArticle.title}
+                      </h3>
+                      <p className="text-muted-foreground line-clamp-2 mb-3">
+                        {relatedArticle.excerpt}
+                      </p>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <time dateTime={relatedArticle.date.replace(/(\d+) (\w+) (\d+)/, "$3-$2-$1")}>
+                          {relatedArticle.date}
+                        </time>
+                        <span>·</span>
+                        <span>{relatedArticle.readTime} de lecture</span>
+                      </div>
+                    </div>
+                    <div className="md:col-span-2 aspect-[4/3] relative rounded-lg overflow-hidden">
+                      <Image
+                        src={relatedArticle.image}
+                        alt={relatedArticle.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 200px"
+                        className="object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            
+            <div className="text-center mt-12">
+              <Link href="/articles">
+                <Button variant="outline" className="gap-2">
+                  Voir tous les articles
+                  <ArrowRight className="w-4 h-4" />
+                </Button>
+              </Link>
+            </div>
+          </section>
+        )}
+      </article>
 
       {/* Footer */}
-      <footer className="bg-background py-12 px-4 border-t border-border">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center mb-6 md:mb-0">
+      <footer className="bg-muted/50 py-12 px-4 border-t border-border mt-16">
+        <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center">
             <Link href="/">
               <div className="flex items-center">
                 <Sparkles className="w-8 h-8 text-primary mr-2" />
-                <span className="text-xl font-bold">Inspiration Illimitée</span>
+                <span className="text-xl font-medium">Inspiration Illimitée</span>
               </div>
             </Link>
           </div>
-          <div className="text-muted-foreground">
-            Nourrissez votre esprit, illuminez votre âme
+          <div className="flex gap-x-8 gap-y-2 flex-wrap justify-center">
+            <Link href="/articles" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Articles
+            </Link>
+            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              À propos
+            </Link>
+            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Contact
+            </Link>
+            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+              Mentions légales
+            </Link>
           </div>
+        </div>
+        <div className="max-w-screen-lg mx-auto text-center mt-8 text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Inspiration Illimitée. Tous droits réservés.
         </div>
       </footer>
     </main>

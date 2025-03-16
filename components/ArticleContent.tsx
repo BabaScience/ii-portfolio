@@ -6,12 +6,121 @@ interface ArticleContentProps {
   content: string;
 }
 
-// This component serves as a container for the article content
-// It still uses dangerouslySetInnerHTML but encapsulates it in a component
-// In a production app, you would want to use a markdown renderer or rich text editor instead
+// This component renders article content with Medium-like styling
 export const ArticleContent: React.FC<ArticleContentProps> = ({ content }) => {
   return (
-    <article className="prose prose-lg dark:prose-invert max-w-none">
+    <article className="article-content">
+      {/* Apply Medium-like styles to the article content */}
+      <style jsx global>{`
+        .article-content p {
+          font-size: 1.2rem;
+          line-height: 1.8;
+          margin-bottom: 2em;
+          letter-spacing: -0.003em;
+          font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+          color: rgba(41, 41, 41, 0.9);
+        }
+        
+        .article-content h2 {
+          font-size: 1.75rem;
+          margin-top: 2.5em;
+          margin-bottom: 0.8em;
+          font-weight: 700;
+          letter-spacing: -0.01em;
+          font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+        }
+        
+        .article-content h3 {
+          font-size: 1.5rem;
+          margin-top: 2em;
+          margin-bottom: 0.8em;
+          font-weight: 600;
+          font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+        }
+        
+        .article-content ul, .article-content ol {
+          margin-bottom: 2em;
+          padding-left: 2em;
+        }
+        
+        .article-content li {
+          margin-bottom: 0.8em;
+          font-size: 1.2rem;
+          line-height: 1.6;
+          font-family: var(--font-serif, Georgia, Cambria, "Times New Roman", Times, serif);
+        }
+        
+        .article-content strong {
+          font-weight: 700;
+        }
+        
+        .article-content blockquote {
+          font-style: italic;
+          padding-left: 1.5em;
+          margin-left: 0;
+          border-left: 3px solid #6b7280;
+          color: #4b5563;
+          margin: 2em 0;
+        }
+        
+        .article-content blockquote p {
+          font-size: 1.3rem;
+          line-height: 1.7;
+        }
+        
+        .article-content a {
+          color: #3b82f6;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+          text-decoration-thickness: 1px;
+        }
+        
+        .article-content a:hover {
+          text-decoration-thickness: 2px;
+        }
+        
+        /* First paragraph styling - larger and bolder like Medium */
+        .article-content > div > p:first-of-type {
+          font-size: 1.3rem;
+          line-height: 1.7;
+          font-weight: 500;
+          margin-bottom: 2.5em;
+        }
+        
+        /* Styling for code blocks if needed */
+        .article-content pre {
+          background-color: #f3f4f6;
+          padding: 1.5em;
+          border-radius: 0.375rem;
+          overflow-x: auto;
+          margin: 2em 0;
+        }
+        
+        .article-content code {
+          font-family: monospace;
+          font-size: 0.9em;
+          background-color: #f3f4f6;
+          padding: 0.2em 0.4em;
+          border-radius: 0.25em;
+        }
+        
+        /* Adjust for dark mode if needed */
+        @media (prefers-color-scheme: dark) {
+          .article-content p, .article-content li {
+            color: rgba(255, 255, 255, 0.9);
+          }
+          
+          .article-content blockquote {
+            border-left-color: #6b7280;
+            color: #9ca3af;
+          }
+          
+          .article-content pre, .article-content code {
+            background-color: #1f2937;
+          }
+        }
+      `}</style>
+      
       {/* eslint-disable-next-line react/no-danger */}
       <div dangerouslySetInnerHTML={{ __html: content }} />
     </article>
