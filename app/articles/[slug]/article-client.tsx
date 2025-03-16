@@ -5,6 +5,7 @@ import { ArticleJsonLd } from "@/components/ArticleJsonLd";
 import { Button } from "@/components/ui/button";
 import { Link, Share2, Twitter, Facebook, Bookmark, LinkedinIcon } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
+import { useTheme } from 'next-themes';
 
 interface ArticleClientProps {
   title: string;
@@ -27,6 +28,7 @@ export default function ArticleClientContent({
   const [scrollProgress, setScrollProgress] = useState(0);
   const [hasBookmarked, setHasBookmarked] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
   
   useEffect(() => {
     // Set the URL for JSON-LD and sharing
@@ -118,7 +120,7 @@ export default function ArticleClientContent({
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-sm hover:bg-primary/10"
+          className="rounded-full w-10 h-10 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
           onClick={() => handleShare('twitter')}
         >
           <Twitter className="w-5 h-5 text-muted-foreground" />
@@ -126,7 +128,7 @@ export default function ArticleClientContent({
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-sm hover:bg-primary/10"
+          className="rounded-full w-10 h-10 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
           onClick={() => handleShare('facebook')}
         >
           <Facebook className="w-5 h-5 text-muted-foreground" />
@@ -134,7 +136,7 @@ export default function ArticleClientContent({
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-sm hover:bg-primary/10"
+          className="rounded-full w-10 h-10 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
           onClick={() => handleShare('linkedin')}
         >
           <LinkedinIcon className="w-5 h-5 text-muted-foreground" />
@@ -142,7 +144,7 @@ export default function ArticleClientContent({
         <Button 
           variant="outline" 
           size="icon" 
-          className="rounded-full w-10 h-10 bg-background/80 backdrop-blur-sm hover:bg-primary/10"
+          className="rounded-full w-10 h-10 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
           onClick={() => handleShare()}
         >
           <Link className="w-5 h-5 text-muted-foreground" />
@@ -150,15 +152,17 @@ export default function ArticleClientContent({
         <Button 
           variant={hasBookmarked ? "default" : "outline"} 
           size="icon" 
-          className={`rounded-full w-10 h-10 ${hasBookmarked ? 'bg-primary' : 'bg-background/80 backdrop-blur-sm hover:bg-primary/10'}`}
+          className={`rounded-full w-10 h-10 ${hasBookmarked 
+            ? 'bg-primary text-primary-foreground' 
+            : 'bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10 text-muted-foreground'}`}
           onClick={toggleBookmark}
         >
-          <Bookmark className={`w-5 h-5 ${hasBookmarked ? 'text-white' : 'text-muted-foreground'}`} />
+          <Bookmark className="w-5 h-5" />
         </Button>
       </div>
       
       {/* Article Content */}
-      <div ref={contentRef} className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:font-semibold prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-h2:text-2xl md:prose-h2:text-3xl prose-headings:text-foreground">
+      <div ref={contentRef} className="prose prose-lg max-w-none dark:prose-invert prose-headings:font-serif prose-headings:font-semibold prose-p:text-muted-foreground prose-strong:text-foreground prose-li:text-muted-foreground prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-h2:text-2xl md:prose-h2:text-3xl prose-headings:text-foreground">
         <ArticleContent content={content} />
       </div>
       
@@ -168,7 +172,7 @@ export default function ArticleClientContent({
           <Button 
             variant="outline" 
             size="icon" 
-            className="rounded-full w-9 h-9"
+            className="rounded-full w-9 h-9 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
             onClick={() => handleShare('twitter')}
           >
             <Twitter className="w-4 h-4" />
@@ -176,7 +180,7 @@ export default function ArticleClientContent({
           <Button 
             variant="outline" 
             size="icon" 
-            className="rounded-full w-9 h-9"
+            className="rounded-full w-9 h-9 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
             onClick={() => handleShare('facebook')}
           >
             <Facebook className="w-4 h-4" />
@@ -184,7 +188,7 @@ export default function ArticleClientContent({
           <Button 
             variant="outline" 
             size="icon" 
-            className="rounded-full w-9 h-9"
+            className="rounded-full w-9 h-9 bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10"
             onClick={() => handleShare()}
           >
             <Share2 className="w-4 h-4" />
@@ -193,7 +197,9 @@ export default function ArticleClientContent({
         <Button 
           variant={hasBookmarked ? "default" : "outline"} 
           size="icon" 
-          className="rounded-full w-9 h-9"
+          className={`rounded-full w-9 h-9 ${hasBookmarked 
+            ? 'bg-primary text-primary-foreground' 
+            : 'bg-background/80 dark:bg-background/30 backdrop-blur-sm hover:bg-primary/10'}`}
           onClick={toggleBookmark}
         >
           <Bookmark className="w-4 h-4" />

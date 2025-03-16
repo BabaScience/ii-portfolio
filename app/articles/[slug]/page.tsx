@@ -4,6 +4,7 @@ import { ArrowLeft, Sparkles, Calendar, Clock, BookOpen, ArrowRight } from "luci
 import Link from "next/link";
 import Image from "next/image";
 import ArticleClientContent from "./article-client";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // Define the Article type
 interface Article {
@@ -364,7 +365,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
   return (
     <main className="min-h-screen bg-background">
       {/* Top Navigation Bar with Logo and Back Link */}
-      <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/80 backdrop-blur-md">
+      <nav className="sticky top-0 z-50 border-b border-border/40 bg-background/80 dark:bg-background/90 backdrop-blur-md">
         <div className="max-w-screen-md mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/articles">
             <Button variant="ghost" size="sm" className="gap-1 text-muted-foreground hover:text-foreground">
@@ -372,10 +373,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
               <span>Articles</span>
             </Button>
           </Link>
-          <Link href="/" className="flex items-center gap-1">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <span className="font-semibold text-sm">Inspiration Illimitée</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Link href="/" className="flex items-center gap-1">
+              <Sparkles className="w-5 h-5 text-primary" />
+              <span className="font-semibold text-sm">Inspiration Illimitée</span>
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -436,13 +440,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         
         {/* Tags */}
         <div className="flex flex-wrap gap-2 my-12">
-          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+          <span className="px-3 py-1 bg-muted dark:bg-muted/40 rounded-full text-xs text-muted-foreground">
             Philosophie
           </span>
-          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+          <span className="px-3 py-1 bg-muted dark:bg-muted/40 rounded-full text-xs text-muted-foreground">
             Conscience
           </span>
-          <span className="px-3 py-1 bg-muted rounded-full text-xs text-muted-foreground">
+          <span className="px-3 py-1 bg-muted dark:bg-muted/40 rounded-full text-xs text-muted-foreground">
             Métaphysique
           </span>
         </div>
@@ -450,7 +454,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
         {/* Author Bio */}
         <div className="border-t border-border pt-10 mb-16">
           <div className="flex items-start gap-4">
-            <div className="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+            <div className="w-14 h-14 rounded-full bg-primary/20 dark:bg-primary/10 flex items-center justify-center flex-shrink-0">
               <Sparkles className="w-6 h-6 text-primary" />
             </div>
             <div>
@@ -470,7 +474,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             <div className="space-y-8">
               {relatedArticles.map((relatedArticle) => (
                 <Link href={`/articles/${relatedArticle.id}`} key={relatedArticle.id}>
-                  <div className="group grid grid-cols-1 md:grid-cols-5 gap-6 items-start hover:bg-muted/40 p-3 -mx-3 rounded-lg transition-colors">
+                  <div className="group grid grid-cols-1 md:grid-cols-5 gap-6 items-start hover:bg-muted/40 dark:hover:bg-muted/10 p-3 -mx-3 rounded-lg transition-colors">
                     <div className="md:col-span-3 flex flex-col justify-center">
                       <h3 className="font-serif text-xl font-medium mb-2 group-hover:text-primary transition-colors">
                         {relatedArticle.title}
@@ -513,7 +517,7 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
       </article>
 
       {/* Footer */}
-      <footer className="bg-muted/50 py-12 px-4 border-t border-border mt-16">
+      <footer className="bg-muted/50 dark:bg-muted/10 py-12 px-4 border-t border-border mt-16">
         <div className="max-w-screen-lg mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center">
             <Link href="/">
