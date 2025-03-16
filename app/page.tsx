@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Youtube, Mail, Twitter, Instagram, Sparkles, BookOpen, Quote } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -54,10 +55,12 @@ export default function Home() {
               <Youtube className="mr-2 h-5 w-5" />
               S'abonner
             </Button>
-            <Button size="lg" variant="secondary">
-              <BookOpen className="mr-2 h-5 w-5" />
-              Découvrir
-            </Button>
+            <Link href="/articles">
+              <Button size="lg" variant="secondary">
+                <BookOpen className="mr-2 h-5 w-5" />
+                Découvrir
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -105,38 +108,54 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
+                id: "la-nature-de-la-conscience",
                 title: "La Nature de la Conscience",
                 desc: "Une exploration profonde de ce qui constitue notre conscience et notre perception de la réalité.",
                 image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
               },
               {
+                id: "le-temps-et-lexistence",
                 title: "Le Temps et l'Existence",
                 desc: "Réflexions sur la nature du temps et son impact sur notre compréhension de l'existence.",
                 image: "https://images.unsplash.com/photo-1502790671504-542ad42d5189?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
               },
               {
+                id: "lart-de-la-pensee",
                 title: "L'Art de la Pensée",
                 desc: "Comment développer une pensée plus profonde et plus significative dans un monde en constante évolution.",
                 image: "https://images.unsplash.com/photo-1517960413843-0aee8e2b3285?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80"
               }
             ].map((item, i: number) => (
-              <Card key={i.toString()} className="overflow-hidden group hover:shadow-xl transition-all duration-300">
-                <div className="aspect-video relative bg-gray-100">
-                  <div 
-                    className="absolute inset-0 group-hover:scale-105 transition-transform duration-300"
-                    style={{
-                      backgroundImage: `url('${item.image}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center"
-                    }}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.desc}</p>
-                </div>
-              </Card>
+              <Link href={`/articles/${item.id}`} key={i.toString()}>
+                <Card className="overflow-hidden group hover:shadow-xl transition-all duration-300 h-full">
+                  <div className="aspect-video relative bg-gray-100">
+                    <div 
+                      className="absolute inset-0 group-hover:scale-105 transition-transform duration-300"
+                      style={{
+                        backgroundImage: `url('${item.image}')`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center"
+                      }}
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.desc}</p>
+                    <div className="mt-4 pt-4 border-t flex items-center text-sm font-medium text-primary">
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      Lire l'article
+                    </div>
+                  </div>
+                </Card>
+              </Link>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/articles">
+              <Button variant="outline" size="lg">
+                Voir tous les articles
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
