@@ -38,8 +38,19 @@ export default function Home() {
           <p className="text-xl md:text-2xl text-gray-200 max-w-2xl mx-auto mb-8">
             Explorez les profondeurs de la conscience humaine et de la sagesse philosophique
           </p>
+          
+          <div className="flex items-center justify-center mb-8">
+            <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-lg p-6 max-w-2xl">
+              <Quote className="w-8 h-8 text-primary mx-auto mb-3" />
+              <p className="text-xl italic text-gray-100">
+                "La sagesse commence dans l'émerveillement. La plus belle expérience que nous puissions vivre est celle du mystère."
+              </p>
+              <p className="text-right text-primary mt-3">- Albert Einstein</p>
+            </div>
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-primary hover:bg-primary/90">
+            <Button size="lg" className="bg-primary hover:bg-primary/90" onClick={() => window.open("https://www.youtube.com/@inspiration_illimitee", "_blank")}>
               <Youtube className="mr-2 h-5 w-5" />
               S'abonner
             </Button>
@@ -153,7 +164,7 @@ export default function Home() {
               placeholder="Votre email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="bg-white/10 text-white placeholder:text-gray-400 border-white/20"
+              className="bg-white/10 text-white placeholder:text-gray-400 border-white/20 outline-none"
               required
             />
             <Button type="submit" className="bg-primary hover:bg-primary/90">
@@ -171,13 +182,12 @@ export default function Home() {
             <span className="text-xl font-bold">Inspiration Illimitée</span>
           </div>
           <div className="flex space-x-6">
-            <Button variant="ghost" size="icon" className="hover:text-primary">
-              <Twitter className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hover:text-primary">
-              <Instagram className="w-5 h-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className="hover:text-primary">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="hover:text-primary"
+              onClick={() => window.open("https://www.youtube.com/@inspiration_illimitee", "_blank")}
+            >
               <Youtube className="w-5 h-5" />
             </Button>
           </div>
