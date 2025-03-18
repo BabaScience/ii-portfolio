@@ -59,7 +59,7 @@ export default function Home() {
             Explorez les profondeurs de la conscience humaine et de la sagesse philosophique
           </p>
           
-          <div className="flex items-center justify-center mb-8">
+          <div className="hidden sm:flex items-center justify-center mb-8">
             <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-lg p-6 max-w-2xl">
               <Quote className="w-8 h-8 text-primary mx-auto mb-3" />
               <p className="text-xl italic text-gray-100 dark:text-gray-100">
