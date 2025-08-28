@@ -41,7 +41,7 @@ export default function RootLayout({
         <ThemeProviderClient>
           {children}
           <Toaster />
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
+          <GoogleAnalytics gaId="G-YZPT9P6NW4" />
         </ThemeProviderClient>
       </body>
     </html>

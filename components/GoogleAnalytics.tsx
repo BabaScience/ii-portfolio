@@ -1,11 +1,10 @@
 'use client';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
-import { GoogleTagManager } from '@next/third-parties/google';
-
-export default function GoogleAnalytics({ gaId }: { gaId: string }) {
+export default function GoogleAnalyticsComponent({ gaId }: { gaId: string }) {
   if (!gaId) {
     return null;
   }
 
-  return <GoogleTagManager gtmId={gaId} />;
-} 
+  return <GoogleAnalytics gaId={gaId} />;
+}
