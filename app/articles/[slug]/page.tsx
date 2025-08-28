@@ -20,6 +20,64 @@ interface Article {
 // Mock data for articles (same as in the articles/page.tsx)
 const articlesData = [
   {
+    id: "comment-cesser-de-trop-penser",
+    title: "Comment cesser de trop penser : 5 leçons stoïciennes pour retrouver la paix intérieure",
+    excerpt: "Découvrez comment les principes stoïciens peuvent vous aider à calmer l'esprit et rétablir le silence intérieure face aux ruminations incessantes.",
+    image: "/thumnails/trop-penser.png",
+    date: "20 Mars 2025",
+    readTime: "8 min",
+    content: `
+      <p>Trop penser est un mal qui touche de nombreuses personnes au quotidien : remords du passé, inquiétudes pour l'avenir, ruminations sans fin. Mais il existe des méthodes puissantes, issues de la philosophie stoïcienne, pour calmer l'esprit et rétablir le silence intérieur. Voici cinq grandes leçons tirées de notre vidéo : <strong>« Comment Cesser de Trop Penser (Grâce au Stoïcisme) »</strong>. Découvrez comment apaiser vos pensées et retrouver la maîtrise de soi.</p>
+      
+      <h2>1. Identifier les pensées parasites</h2>
+      
+      <p>Commencez par observer vos propres pensées. Les pensées qui jugent, anticipent ou se répètent créent souvent agitation et souffrance. Les stoïciens disent :</p>
+      
+      <blockquote>"Ce n'est pas ce qui arrive qui trouble l'homme, mais l'opinion qu'il s'en fait."</blockquote>
+      
+      <p>La première étape du retour au calme est donc la lucidité. Mettez vos pensées par écrit. Notez sans filtre tout ce qui vous traverse l'esprit. Cette pratique simple permet de reconnaître les schémas récurrents et crée de la distance entre vous et ce flot incessant. Plus vous apprenez à distinguer les faits des interprétations, moins vous êtes prisonnier de votre mental.</p>
+      
+      <h2>2. Se rappeler ce qui dépend de vous</h2>
+      
+      <p>L'une des idées clés du stoïcisme est la dichotomie du contrôle : distinguer ce qui dépend de vous et ce qui ne dépend pas. Vos paroles, vos attitudes, vos réactions émotionnelles – voilà ce qui est sous votre contrôle. En revanche, les actions des autres, la météo ou le passé vous échappent.</p>
+      
+      <p>Votre paix commence là où s'arrête votre besoin de contrôler ce qui ne vous appartient pas, et s'amplifie quand vous focalisez votre énergie sur ce qui dépend véritablement de vous. Ce changement de perspective réduit instantanément le niveau d'anxiété, tout en redonnant la sensation de pouvoir personnel.</p>
+      
+      <h2>3. Ralentir le rythme intérieur : la vertu du silence stoïcien</h2>
+      
+      <p>Dans un monde bruyant où tout va vite, les stoïciens cultivaient l'art du calme intérieur. Il ne s'agit pas de fuir la réalité, mais de choisir de s'arrêter, de respirer et d'observer ce qui se passe en soi, même au milieu du tumulte. Accordez-vous chaque jour un espace de silence, sans distractions. Cette pratique ralentit le système nerveux, réduit l'agitation mentale et prépare l'esprit à la clarté.</p>
+      
+      <h2>4. Le pouvoir du présent : la triple conscience</h2>
+      
+      <p>Le stoïcisme enseigne que la sagesse commence dans le moment présent. Pour couper le flux des pensées automatiques, exercez la triple conscience :</p>
+      
+      <ul>
+        <li>Nommez trois choses que vous voyez autour de vous</li>
+        <li>Trois sons que vous entendez</li>
+        <li>Trois sensations que vous ressentez dans le corps</li>
+      </ul>
+      
+      <p>Cet ancrage ramène à l'instant, brise la tempête de pensées et vous reconnecte à votre pouvoir d'acteur conscient.</p>
+      
+      <h2>5. L'action comme remède à l'inaction mentale</h2>
+      
+      <p>Pensées en boucle et paralysie mentale sont étroitement liées. Les stoïciens affirment que le meilleur remède au surmenage mental, c'est l'action, même minime : appeler quelqu'un, ranger une pièce, écrire une ligne dans un carnet… L'important est de rompre le cercle des ruminations par un geste concret.</p>
+      
+      <blockquote>"Nous souffrons plus dans notre imagination que dans la réalité." – Sénèque</blockquote>
+      
+      <p>Agir ramène à la réalité du présent, dissipe les brouillards mentaux et redonne la sensation de maîtrise.</p>
+      
+      <h2>Pour aller plus loin</h2>
+      
+      <p>Cet article est inspiré de notre vidéo :</p>
+      <p>👉 <strong><a href="https://www.youtube.com/watch?v=eobstFIMl_4" target="_blank" rel="noopener noreferrer">Comment Cesser de Trop Penser (Grâce au Stoïcisme)</a></strong></p>
+      
+      <p>Pour découvrir toutes les techniques expliquées en détail, retrouvez la vidéo complète sur notre chaîne YouTube. N'hésitez pas à vous abonner, à liker et à partager si le sujet vous a aidé !</p>
+      
+      <p>Avez-vous testé l'une de ces pratiques ? Partagez votre expérience en commentaire et ensemble, cultivons un esprit serein et puissant.</p>
+    `
+  },
+  {
     id: "la-nature-de-la-conscience",
     title: "La Nature de la Conscience",
     excerpt: "Une exploration profonde de ce qui constitue notre conscience et notre perception de la réalité.",
@@ -161,7 +219,7 @@ const articlesData = [
     id: "la-philosophie-stoicienne",
     title: "La Philosophie Stoïcienne et la Vie Moderne",
     excerpt: "Comment les principes stoïciens peuvent nous aider à naviguer les défis de la vie contemporaine.",
-    image: "https://images.unsplash.com/photo-1599739291060-4578e77dac5d?ixlib=rb-1.2.1&auto=format&fit=crop&w=2070&q=80",
+    image: "/thumnails/trop-penser.png",
     date: "1 Mars 2025",
     readTime: "10 min",
     content: `

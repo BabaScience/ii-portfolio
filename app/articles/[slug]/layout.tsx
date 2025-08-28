@@ -15,6 +15,15 @@ interface Article {
 // Mock data for articles (same as in the articles/page.tsx)
 const articlesData = [
   {
+    id: "comment-cesser-de-trop-penser",
+    title: "Comment cesser de trop penser : 5 leçons stoïciennes pour retrouver la paix intérieure",
+    excerpt: "Découvrez comment les principes stoïciens peuvent vous aider à calmer l'esprit et rétablir le silence intérieur face aux ruminations incessantes.",
+    image: "/thumnails/trop-penser.png",
+    date: "20 Mars 2025",
+    readTime: "8 min",
+    content: "..."
+  },
+  {
     id: "la-nature-de-la-conscience",
     title: "La Nature de la Conscience",
     excerpt: "Une exploration profonde de ce qui constitue notre conscience et notre perception de la réalité.",
