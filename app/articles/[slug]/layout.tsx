@@ -59,7 +59,7 @@ export async function generateMetadata(
   const cleanExcerpt = article.excerpt.replace(/<[^>]*>?/gm, '');
 
   // Get the canonical URL
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://inspiration-illimitee.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://inspirationillimitee.com';
   const articleUrl = `${baseUrl}/articles/${article.id}`;
 
   return {

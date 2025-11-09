@@ -102,7 +102,7 @@ function getDateFromString(dateString: string): Date {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://inspiration-illimitee.com';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://inspirationillimitee.com';
   
   // Static routes
   const routes = [
