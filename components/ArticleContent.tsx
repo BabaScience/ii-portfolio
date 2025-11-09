@@ -1,7 +1,12 @@
 "use client";
 
 import { useTheme } from 'next-themes';
-import { SafeHtml } from './SafeHtml';
+import dynamic from 'next/dynamic';
+
+// Dynamically import SafeHtml with SSR disabled to prevent isomorphic-dompurify from loading during build
+const SafeHtml = dynamic(() => import('./SafeHtml').then(mod => ({ default: mod.SafeHtml })), { 
+  ssr: false 
+});
 
 interface ArticleContentProps {
   content: string;

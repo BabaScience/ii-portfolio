@@ -2,7 +2,7 @@
 /* eslint-disable-next-line no-danger, jsx-a11y/no-danger, @next/next/no-html-link-for-pages */
 "use client";
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import DOMPurify from 'isomorphic-dompurify';
 
 interface SafeHtmlProps {
@@ -11,23 +11,19 @@ interface SafeHtmlProps {
 }
 
 // Dedicated component for safely rendering HTML content
-// Uses lazy hydration to prevent SSR issues with isomorphic-dompurify
+// This component is dynamically imported with ssr: false to prevent
+// isomorphic-dompurify from loading during static site generation
 export const SafeHtml = ({ html, className }: SafeHtmlProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isClient, setIsClient] = useState(false);
-
+  
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (containerRef.current && isClient) {
-      // Sanitize HTML content only on client side
+    if (containerRef.current) {
+      // Sanitize HTML content
       const sanitizedHtml = DOMPurify.sanitize(html);
       // Update the container's HTML
       containerRef.current.innerHTML = sanitizedHtml;
     }
-  }, [html, isClient]);
+  }, [html]);
   
   return <div ref={containerRef} className={className} />;
 }; 
