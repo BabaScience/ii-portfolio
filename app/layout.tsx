@@ -8,8 +8,62 @@ import GoogleAnalytics from '@/components/GoogleAnalytics';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Inspiration Illimitee - Philosophical Insights',
-  description: 'Exploring the depths of human consciousness and philosophical wisdom',
+  metadataBase: new URL('https://inspirationillimitee.com'),
+  
+  // SEO Base
+  title: {
+    default: 'Inspiration Illimitée - Philosophie & Développement Personnel',
+    template: '%s | Inspiration Illimitée',
+  },
+  description: 'Découvrez des réflexions philosophiques profondes, des enseignements stoïciens et des contenus inspirants pour nourrir votre esprit.',
+  
+  // Geographic & Language Targeting
+  other: {
+    'language': 'French',
+    'geo.region': 'FR',
+    'geo.placename': 'France',
+    'content-language': 'fr-FR',
+  },
+  
+  // Open Graph with Locale
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: 'https://inspirationillimitee.com',
+    siteName: 'Inspiration Illimitée',
+    title: 'Inspiration Illimitée - Philosophie & Développement Personnel',
+    description: 'Découvrez des réflexions philosophiques profondes, des enseignements stoïciens et des contenus inspirants pour nourrir votre esprit.',
+    images: [
+      {
+        url: '/og-image.webp',
+        width: 1200,
+        height: 630,
+        alt: 'Inspiration Illimitée',
+      },
+    ],
+  },
+  
+  // Twitter Cards
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Inspiration Illimitée',
+    description: 'Philosophie & Développement Personnel',
+    images: ['/og-image.webp'],
+  },
+  
+  // Robots
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  
   icons: {
     icon: [
       { url: '/favicon.ico' },
@@ -36,7 +90,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen antialiased`}>
         <ThemeProviderClient>
           {children}

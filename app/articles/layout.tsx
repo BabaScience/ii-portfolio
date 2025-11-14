@@ -8,6 +8,7 @@ export const metadata: Metadata = {
     title: "Articles | Inspiration Illimitée",
     description: "Explorez nos réflexions philosophiques et insights sur la conscience, l'existence, et la sagesse.",
     type: "website",
+    locale: "fr_FR",
     images: [
       {
         url: "https://images.unsplash.com/photo-1519681393784-d120267933ba",

@@ -67,6 +67,7 @@ export async function generateMetadata(
     description: cleanExcerpt,
     openGraph: {
       type: 'article',
+      locale: 'fr_FR',
       url: articleUrl,
       title: article.title,
       description: cleanExcerpt,
