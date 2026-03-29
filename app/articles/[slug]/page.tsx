@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import ArticleClientContent from "./article-client";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import NewsletterCTA from "@/components/NewsletterCTA";
+import SocialShare from "@/components/SocialShare";
 
 // Define the Article type
 interface Article {
@@ -496,6 +498,15 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           />
         </div>
         
+        {/* Newsletter CTA */}
+        <NewsletterCTA variant="inline" />
+
+        {/* Social Share */}
+        <SocialShare
+          url={`https://inspirationillimitee.com/articles/${article.id}`}
+          title={article.title}
+        />
+
         {/* Tags */}
         <div className="flex flex-wrap gap-2 my-12">
           <span className="px-3 py-1 bg-muted dark:bg-muted/40 rounded-full text-xs text-muted-foreground">
@@ -589,13 +600,13 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
             <Link href="/articles" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Articles
             </Link>
-            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               À propos
             </Link>
-            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Contact
             </Link>
-            <Link href="/#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/mentions-legales" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               Mentions légales
             </Link>
           </div>
