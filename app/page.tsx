@@ -47,6 +47,22 @@ export default function Home() {
                 Articles
               </Button>
             </Link>
+            <Link href="/about">
+              <Button
+                variant="ghost"
+                className="hidden sm:flex text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/10"
+              >
+                À propos
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button
+                variant="ghost"
+                className="hidden sm:flex text-white dark:text-white hover:bg-white/20 dark:hover:bg-white/10"
+              >
+                Contact
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
@@ -267,19 +283,19 @@ export default function Home() {
               Articles
             </Link>
             <Link
-              href="/#"
+              href="/about"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               À propos
             </Link>
             <Link
-              href="/#"
+              href="/contact"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Contact
             </Link>
             <Link
-              href="/#"
+              href="/mentions-legales"
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               Mentions légales

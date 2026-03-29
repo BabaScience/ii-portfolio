@@ -84,6 +84,29 @@ export const metadata: Metadata = {
   manifest: '/site.webmanifest',
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Inspiration Illimitée",
+  url: "https://inspirationillimitee.com",
+  logo: "https://inspirationillimitee.com/og-image.webp",
+  sameAs: [
+    "https://www.youtube.com/@inspiration_illimitee",
+    "https://twitter.com/inspillimitee",
+    "https://www.instagram.com/inspiration_illimitee",
+  ],
+  description:
+    "Marque de développement personnel ancrée dans la philosophie stoïcienne, la sagesse ancienne et la transformation intérieure.",
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Inspiration Illimitée",
+  url: "https://inspirationillimitee.com",
+  inLanguage: "fr-FR",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -91,6 +114,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body className={`${inter.className} min-h-screen antialiased`}>
         <ThemeProviderClient>
           {children}
