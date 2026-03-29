@@ -47,24 +47,16 @@ export default function MentionsLegalesPage() {
             <section>
               <h2 className="text-2xl font-bold font-serif mb-4">1. Éditeur du site</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Le site <strong>inspirationillimitee.com</strong> est édité par :<br />
-                <strong>Inspiration Illimitée</strong><br />
-                Email : contact@inspirationillimitee.com<br />
-                Directeur de la publication : BabaScience
+                Le site <strong>inspirationillimitee.com</strong> est édité par{" "}
+                <strong>Inspiration Illimitée</strong>.<br />
+                Contact : <a href="mailto:contact@inspirationillimitee.com" className="text-primary hover:underline">contact@inspirationillimitee.com</a>
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-bold font-serif mb-4">2. Hébergement</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Le site est hébergé par :<br />
-                <strong>Vercel Inc.</strong><br />
-                440 N Barranca Ave #4133<br />
-                Covina, CA 91723<br />
-                États-Unis<br />
-                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                  vercel.com
-                </a>
+                Le site est hébergé par un prestataire technique tiers situé aux États-Unis.
               </p>
             </section>
 
